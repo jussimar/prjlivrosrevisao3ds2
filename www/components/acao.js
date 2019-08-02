@@ -23,3 +23,23 @@ $(document).on("click","#salvar",function(){
         }
     });    
 });
+
+function habilita(){
+  $("#titulo").prop("readonly",false);
+  $("#autor").prop("readonly",false);
+  $("#ano").prop("readonly",false);
+}
+
+function desabilita(){
+  $("#titulo").prop("readonly",true);
+  $("#autor").prop("readonly",true);
+  $("#ano").prop("readonly",true);
+}
+
+$(document).on("click","#novo",function(){
+  habilita();
+});
+
+$(document).on("click","#cancelar",function(){
+  desabilita();
+});
