@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
   <script src="components/loader.js"></script>
   <script src="components/jquery-3.4.1.min.js"></script>
@@ -18,6 +18,60 @@
   </script>
 </head>
 <body>
-  
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+            <h3>Cadastro de Livros</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+              <label for="">Titulo do Livro</label>
+              <input type="text" class="form-control" id="titulo">
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+              <label for="">Autor do Livro</label>
+              <input type="text" class="form-control" id="autor">
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+              <label for="">Ano</label>
+              <input type="number" class="form-control" id="ano" max="2019" min="1900">
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-4">
+            <div class="form-group">
+              <button class="btn btn-primary btn-block ">Novo</button>
+            </div>
+        </div>
+         <div class="col-xs-4">
+            <div class="form-group">
+              <button class="btn btn-success btn-block " id="salvar">Salvar</button>
+            </div>
+        </div>
+         <div class="col-xs-4">
+            <div class="form-group">
+              <button class="btn btn-warning btn-block ">Cancelar</button>
+            </div>
+        </div>
+      </div>
+       <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+             <button class="btn btn-info btn-block ">Listar</button>
+            </div>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
