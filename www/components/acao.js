@@ -113,3 +113,36 @@ $(document).on("click","#deletar",function(){
         }
     });
 });
+
+$(document).on("click","#salvarAlt",function(){
+    var parametros = {
+      "livro":$("#titulo").val(),
+      "autor":$("#autor").val(),
+      "ano":$("#ano").val(),
+      "codigo":$("#codigo").val()
+    }
+    // url:"https://dominioappsjussa.000webhostapp.com/cadastra.php",//para onde enviar
+    $.ajax({
+        type:"post", //como enviar
+        url:"https://appmobile3i2.000webhostapp.com/editar.php",//para onde enviar
+        data:parametros,//o que enviar
+        //se der certo
+        success: function(data){
+            navigator.notification.alert("msg:"+data);
+           location.reload();
+        },
+        //se der errado
+        error: function(data){
+             navigator.notification.alert(data);
+        }
+    });    
+});
+
+$(document).on("click","#editar",function(){
+  habilita();
+});
+
+$(document).on("click","#cancelarEdit",function(){
+  desabilita();
+});
+
