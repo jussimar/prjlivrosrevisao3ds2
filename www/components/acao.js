@@ -1,6 +1,7 @@
 // This is a JavaScript file
+var urlImage;
 $(document).on("click","#salvar",function(){
-    var parametros = {
+   /* var parametros = {
       "livro":$("#titulo").val(),
       "autor":$("#autor").val(),
       "ano":$("#ano").val()
@@ -21,7 +22,32 @@ $(document).on("click","#salvar",function(){
         error: function(data){
              navigator.notification.alert(data);
         }
-    });    
+    });*/
+    var prop = document.getElementById('caminho').files[0];
+    var nome_imagem = prop.name;
+    var extensao_imagem = nome_imagem.split('.').pop().toLowerCase();
+    
+    if(jQuery.inArray(extensao_imagem,['png','jpg','jpeg']) == -1){
+        navigator.notification.alert("imagem invalida");
+    }else{
+      var form_data = new FormData();
+      form_data.append("foto",prop);
+      form_data.append("livro",$("#titulo").val());
+      form_data.append("autor",$("#autor").val());
+      form_data.append("ano",$("#ano").val());
+      $.ajax({
+        url:"https://appmobile3i2.000webhostapp.com/cadastra.php",
+        method:'POST',
+        data:form_data,
+        contentType:false,
+        cache:false,
+        processData:false,
+        success:function(data){
+          navigator.notification.alert(data);
+          location.reload(); 
+        }
+      });
+    }    
 });
 
 function habilita(){
@@ -85,6 +111,7 @@ $(document).on("change","#listalivros",function(){
            $("#titulo").val(data.livro.titulo);
            $("#autor").val(data.livro.autor);
            $("#ano").val(data.livro.ano);
+           $("#imagem").attr('src',"https://appmobile3i2.000webhostapp.com/"+data.livro.imagem);
         },
         //se der errado
         error: function(data){
@@ -144,5 +171,24 @@ $(document).on("click","#editar",function(){
 
 $(document).on("click","#cancelarEdit",function(){
   desabilita();
+});
+
+//codigo para chamar a camera
+
+$(document).on("click","#foto",function(){
+    navigator.camera.getPicture(onSuccess, onFail, { 
+      quality: 50,
+      destinationType: Camera.DestinationType.FILE_URI,
+      saveToPhotoAlbum:true,
+      correctOrientation:true
+    });
+
+    function onSuccess(imageURI) {
+        navigator.notification.alert("imagem registrada com sucesso!");
+    }
+
+    function onFail(message) {
+       navigator.notification.alert('erro ao capturar imagem: ' + message);
+    }
 });
 
